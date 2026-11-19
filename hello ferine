@@ -1,0 +1,21 @@
+import random
+import string
+
+
+def generate_password(length=12):
+    # รวมตัวอักษรพิมพ์เล็ก พิมพ์ใหญ่ ตัวเลข และสัญลักษณ์
+    characters = string.ascii_letters + string.digits + "!@#$%^&*"
+    password = "".join(random.choice(characters) for _ in range(length))
+    return password
+
+
+if __name__ == "__main__":
+    print("--- โปรแกรมสุ่มรหัสผ่าน ---")
+    try:
+        user_length = int(input("ระบุความยาวรหัสผ่านที่ต้องการ (เช่น 12): "))
+        if user_length < 4:
+            print("รหัสผ่านควรยาวอย่างน้อย 4 ตัวอักษร ระบบจะตั้งค่าเป็น 8 ให้อัตโนมัติ")
+            user_length = 8
+        print(f"รหัสผ่านของคุณคือ: {generate_password(user_length)}")
+    except ValueError:
+        print("กรุณากรอกเป็นตัวเลขเท่านั้น")
